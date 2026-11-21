@@ -1,4 +1,4 @@
-import { $, tampilPesan, pisahWaktu } from './utils.js'
+import { $, tampilPesan, pisahWaktu } from './utils_script.js'
 
 if (!localStorage.getItem('loggedIn')) {
   location.replace('/index');

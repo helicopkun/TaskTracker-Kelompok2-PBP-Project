@@ -1,4 +1,4 @@
-import { $, tampilPesan } from './utils.js'
+import { $, tampilPesan } from './utils_script.js'
 
 $('formRegister').addEventListener('submit', async (e) => {
     e.preventDefault();
