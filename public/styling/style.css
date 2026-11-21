@@ -1,0 +1,27 @@
+/* Global styling sheet */
+:root {
+    /* BACKGROUND */
+    --bg-main: #151719;
+    --bg-sidebar: #1D2123;
+    --bg-card: #262B2D;
+    --bg-card-hover: #303638;
+
+    /* TEXT */
+    --text-primary: #E7E3DA;
+    --text-secondary: #929795;
+    --text-muted: #656D6B;
+
+    /* ACCENT */
+    --accent-primary: #B18A61;
+    --accent-secondary: #8C9B91;
+    --accent-soft: #D1B895;
+
+    /* BORDER */
+    --border: #353B3C;
+    --border-subtle: #292F30;
+
+    /* STATUS */
+    --success: #829C86;
+    --warning: #C49A68;
+    --danger: #BD7770;
+}

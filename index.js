@@ -72,8 +72,8 @@ app.post(`${API}/new-task-personal`, async (req, res) => {
   }
 })
 
-app.get(`${API}/view-task-personal`, async (req, res) => {
-  const { username } = req.query;
+app.post(`${API}/view-task-personal`, async (req, res) => {
+  const { username } = req.body;
   try {
     const { rows } = await db.query(
       'SELECT task_name, due FROM personal_task WHERE username=$1 ORDER BY due ASC',

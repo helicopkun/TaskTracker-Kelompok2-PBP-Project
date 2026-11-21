@@ -1,4 +1,7 @@
 export const $ = id => document.getElementById(id);
+export const API = '/api/task-track';
+export const username = localStorage.getItem('username');
+
 
 export function tampilPesan(el, teks) { // tampilPesan($('id'), 'string pesan')
   el.textContent = teks;

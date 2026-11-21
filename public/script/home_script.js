@@ -1,10 +1,9 @@
-import { $, tampilPesan, pisahWaktu } from './utils_script.js'
+import { API, username, $, tampilPesan, pisahWaktu } from './utils_script.js'
 
 if (!localStorage.getItem('loggedIn')) {
   location.replace('/index');
 }
 
-const username = localStorage.getItem('username');
 $('username').textContent = username;
 
 $('btnLogout').addEventListener('click', () => {
@@ -17,7 +16,7 @@ $('formNewtask').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   try {
-    const res = await fetch('/api/task-track/new-task-personal', {
+    const res = await fetch(`${API}/new-task-personal`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -44,9 +43,13 @@ const tabel = $('dataTask');
 
 async function muatData() {
   try {
-    const res = await fetch(
-      `/api/task-track/view-task-personal?username=${encodeURIComponent(username)}`
-    );
+    const res = await fetch(`${API}/view-task-personal`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username
+      }),
+    });
     
     const data = await res.json();
     if (!res.ok) throw new Error(data.pesan || 'Gagal mengambil data');

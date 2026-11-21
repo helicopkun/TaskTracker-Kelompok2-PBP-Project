@@ -1,4 +1,4 @@
-import { $, tampilPesan } from './utils_script.js'
+import { API, $, tampilPesan } from './utils_script.js'
 
 $('formRegister').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -10,7 +10,7 @@ $('formRegister').addEventListener('submit', async (e) => {
     }
 
     try {
-    const res = await fetch('/api/task-track/register', {
+    const res = await fetch(`${API}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
