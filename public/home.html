@@ -7,8 +7,36 @@
 </head>
 <body>
     Home page
-    <p>Welcome, <span id="user"></span></p>
+    <p>Welcome, <span id="username"></span></p>
     <button id="btnLogout">Logout</button>
-    <script src="script/home_script.js"></script>
+
+    <br>
+
+    Add new task
+    <form id="formNewtask">
+        <input type="text" id="taskName" placeholder="Task name" required>
+        <input type="datetime-local" id="due" placeholder="Due date">
+        
+        <button type="submit">Add task</button>
+    </form>
+    <p id="pesanNewtask"></p>
+
+
+    <br><br><br>
+
+    Table Task
+    <table>
+        <thead>
+            <tr>
+                <th>Task name</th>
+                <th>due</th>
+            </tr>
+        </thead>
+        <tbody id="dataTask"></tbody>
+    </table>
+    <p id="pesanData">Loading..</p>
+
+
+    <script type="module" src="script/home_script.js"></script>
 </body>
 </html>

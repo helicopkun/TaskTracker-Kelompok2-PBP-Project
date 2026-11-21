@@ -1,17 +1,11 @@
-const $ = id => document.getElementById(id);
-const pesan = $('pesan');
-
-
-function tampilPesan(teks) {
-  pesan.textContent = teks;
-}
+import { $, tampilPesan } from './utils.js'
 
 $('formRegister').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if ($('password').value !== $('pwConfirm').value) {
         $('pwConfirm').value = '';
-        tampilPesan('Password tidak sama!');
+        tampilPesan($('pesan'), 'Password tidak sama!');
         return;
     }
 
@@ -32,7 +26,7 @@ $('formRegister').addEventListener('submit', async (e) => {
     localStorage.setItem('username', data.username);
     location.href = '/home';
     } catch (error) {
-        tampilPesan(error.message);
+        tampilPesan($('pesan'), error.message);
     }
 
 });

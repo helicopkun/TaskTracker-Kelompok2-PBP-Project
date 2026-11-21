@@ -27,12 +27,12 @@ app.post(`${API}/login`, async (req, res) => {
   const { username, password } = req.body;
   try {
     const { rows } = await db.query(
-      'SELECT id, username FROM users WHERE username = $1 AND password = $2',
+      'SELECT username FROM users WHERE username = $1 AND password = $2',
       [username, password]
     );
     if (!rows.length) return res.status(400).json({ pesan: 'Username atau password salah' });
     
-    res.json({ username: rows[0].username });
+    res.json({ username: username });
   } catch (err) {
     console.error(err);
     res.status(500).json({ pesan: 'Terjadi kesalahan server' });
@@ -46,17 +46,46 @@ app.post(`${API}/register`, async (req, res) => {
       'INSERT INTO users (username, password) VALUES ($1, $2)',
       [username, password]
     );
-    res.json({ username: username, pesan: 'Berhasil daftar' });
+    res.json({ username: username });
+    
   } catch (err) {
     if (err.code === '23505') {
       return res.status(400).json({ pesan: 'Username sudah dipakai' });
     }
     console.error(err);
-    res.status(500).json({ pesan: 'Terjadi kesalahan server' })
+    res.status(500).json({ pesan: 'Terjadi kesalahan server' });
   }
 });
 
+app.post(`${API}/new-task-personal`, async (req, res) => {
+  const { task_name, due, username } = req.body;
+  try {
+    await db.query(
+      'INSERT INTO personal_task (task_name, due, username) VALUES ($1, $2, $3)',
+      [task_name, due, username]
+    );
+    res.json({ pesan: 'Task ditambahkan'});
 
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ pesan: 'Terjadi kesalahan server' });
+  }
+})
+
+app.get(`${API}/view-task-personal`, async (req, res) => {
+  const { username } = req.query;
+  try {
+    const { rows } = await db.query(
+      'SELECT task_name, due FROM personal_task WHERE username=$1',
+      [username]
+    );
+    res.json(rows);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ pesan: 'Terjadi kesalahan server' });
+  }
+});
 
 
 

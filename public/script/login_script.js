@@ -1,10 +1,4 @@
-const $ = id => document.getElementById(id);
-const pesan = $('pesan');
-
-
-function tampilPesan(teks) {
-  pesan.textContent = teks;
-}
+import { $, tampilPesan } from './utils.js'
 
 $('formLogin').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -26,6 +20,6 @@ $('formLogin').addEventListener('submit', async (e) => {
     localStorage.setItem('username', data.username);
     location.href = '/home';
   } catch (error) {
-    tampilPesan(error.message);
+    tampilPesan($('pesan'), error.message);
   }
 });

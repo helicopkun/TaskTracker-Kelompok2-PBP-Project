@@ -1,13 +1,11 @@
-const API = '/api/task-track';
-const $ = id => document.getElementById(id);
+import { $, tampilPesan } from './utils.js'
 
-const tabel = $('dataUsers');
-const pesan = $('pesan');
-
-
-function tampilPesan(teks) {
-  pesan.textContent = teks;
+if (localStorage.getItem('loggedIn')) {
+  location.replace('/home');
 }
+
+const API = '/api/task-track';
+const tabel = $('dataUsers');
 
 async function muatData() {
   try {
@@ -17,7 +15,7 @@ async function muatData() {
     const data = await res.json();
     tampilkanTabel(data);
   } catch (error) {
-    tampilPesan(error.message);
+    tampilPesan($('pesan'), error.message);
   }
 }
 
