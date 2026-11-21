@@ -76,7 +76,7 @@ app.get(`${API}/view-task-personal`, async (req, res) => {
   const { username } = req.query;
   try {
     const { rows } = await db.query(
-      'SELECT task_name, due FROM personal_task WHERE username=$1',
+      'SELECT task_name, due FROM personal_task WHERE username=$1 ORDER BY due ASC',
       [username]
     );
     res.json(rows);
